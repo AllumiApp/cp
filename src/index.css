@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/*
+ * Tokens mirror the allumi-website design system (the built realization of the
+ * same Paper "Design System — Foundations"), so the class vocabulary
+ * (text-dark, bg-cream, text-gold, font-serif, text-dark-muted, footer-*) ports
+ * faithfully. Semantic aliases (background/foreground/primary/card) are kept so
+ * shared primitives keep resolving.
+ */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Libre Baskerville', Georgia, serif;
+  --font-display: 'Libre Baskerville', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Brand palette */
+  --color-dark: #2C1810;
+  --color-dark-muted: #2C181080;   /* 50% — eyebrows */
+  --color-dark-soft: #2C181073;    /* 45% — italic quotes */
+  --color-dark-medium: #2C1810A6;  /* 65% — body */
+  --color-dark-subtle: #2C181099;  /* 60% — secondary */
+  --color-gold: #C49C40;
+  --color-cream: #FDF2F0;
+  --color-card-warm: #F0E3DA;
+  --color-card-pink: #F4C3C6;
+  --color-card-rose: #C87B82;
+  --color-beige: #E5D5CD;
+
+  /* Footer (on dark) text ramp */
+  --color-footer-bg: #2C1810;
+  --color-footer-text: #FFFFFFD9;     /* 85% */
+  --color-footer-muted: #FFFFFF80;    /* 50% */
+  --color-footer-faint: #FFFFFF66;    /* 40% */
+  --color-footer-divider: #FFFFFF1A;  /* 10% */
+  --color-footer-copy: #FFFFFF4D;     /* 30% */
+
+  /* Semantic aliases (for shared primitives) */
+  --color-background: #FDF2F0;
+  --color-foreground: #2C1810;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #2C1810;
+  --color-primary: #2C1810;
+  --color-primary-foreground: #FFFFFF;
+  --color-border: #E5D5CD;
+  --color-input: #E5D5CD;
+  --color-ring: #C49C40;
+
+  --radius: 0.625rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overscroll-behavior-y: none;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-dark);
+    background: var(--color-cream);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+  }
+
+  /* Offset anchor scrolling so section headings land below the sticky navbar
+     (h-16 / 64px on mobile, h-[110px] on desktop). */
+  section[id] {
+    scroll-margin-top: 40px;
+  }
+  @media (min-width: 1024px) {
+    section[id] {
+      scroll-margin-top: 62px;
+    }
+  }
+}
+
+@layer utilities {
+  /* Eyebrow label: Inter SemiBold 13px, 0.15em tracking, uppercase, dark-muted */
+  .text-eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+}
