@@ -1,0 +1,262 @@
+export const en = {
+  nav: {
+    coaching: 'Coaching',
+    allumi: 'ALLUMI',
+    show: 'The Show',
+    about: 'About',
+    book: 'Book a session',
+  },
+  hero: {
+    eyebrow: '1:1 Transformation Coaching',
+    titleLine1: "Step into the life that's",
+    titleAccent: 'already yours.',
+    subtitle:
+      'Live 1:1 coaching over Zoom for women ready to move past old patterns — and build the clarity, confidence, and momentum to create what comes next.',
+    ctaPrimary: 'Book a 1:1 session',
+    ctaSecondary: 'How it works',
+    trust: 'Certified Future Vision Coach · 200+ sessions held · English & Deutsch',
+  },
+  approach: {
+    eyebrow: '1:1 Coaching',
+    titleLine1: 'Coaching built around',
+    titleAccent: 'your',
+    titleLine2: 'transformation.',
+    body: 'No scripts, no one-size programs. Just focused, private sessions designed entirely around where you are and where you want to be.',
+    cta: 'Book a session',
+    questions: 'Questions?',
+    faqLink: 'FAQ →',
+    columns: [
+      {
+        label: '01 — What it is',
+        title: 'A space to think clearly',
+        body: "Weekly 60-minute sessions over Zoom — calm, confidential, and entirely yours. We work through what's really going on and turn it into action.",
+      },
+      {
+        label: "02 — Who it's for",
+        title: 'Women ready for change',
+        body: "For anyone standing at a threshold — a career shift, a fresh start, a quieter mind — who's done waiting and ready to move with intention.",
+      },
+      {
+        label: '03 — The outcome',
+        title: 'Momentum that lasts',
+        body: 'You leave each session with clarity, a next step, and the steady confidence that the life you want is genuinely within reach.',
+      },
+    ],
+  },
+  allumi: {
+    eyebrow: 'ALLUMI · The App',
+    titleLine1: 'Transformation,',
+    titleAccent: 'on the go.',
+    body: 'Guided meditations, breathwork, and transformative audio — built to fit seamlessly into your everyday life. Carry the work with you between sessions, wherever you are.',
+    appStorePre: 'Download on the',
+    appStoreName: 'App Store',
+    googlePlayPre: 'Get it on',
+    googlePlayName: 'Google Play',
+    link: 'Explore the app at allumi.me',
+    phone: {
+      greeting: 'Good morning, Christina',
+      todayLabel: "Today's journey",
+      journeyTitle: 'Love & Relationships',
+      journeySub: 'Your open heart.',
+      journeyMeta: 'Day 3 of 7 · 12 min',
+      cardTitle: 'Morning Reset',
+      cardSub: 'Breathwork · 8 min',
+    },
+  },
+  show: {
+    eyebrow: 'The Christina Pfeiffer Show',
+    titleLine1: 'Fifteen minutes to',
+    titleAccent: 'shift your day.',
+    body: 'A short, honest podcast on transformation, mindset, and the small shifts that change everything. New episodes weekly — about the length of your morning coffee.',
+    platforms: ['Spotify', 'Apple Podcasts', 'YouTube'],
+    latestLabel: 'Latest episode',
+    episodeTitle: 'Letting go of who you used to be',
+    episodeMeta: 'Episode 24 · 15 min · This week',
+    play: 'Play latest',
+  },
+  testimonials: {
+    eyebrow: 'Kind words',
+    titleLine1: 'Transformations, in their',
+    titleAccent: 'own words.',
+    items: [
+      {
+        quote:
+          "I came in stuck and left with a plan I actually believe in. Six weeks later I'd handed in my notice — and I've never felt more like myself.",
+        name: 'Lena M.',
+        tag: 'Career change',
+      },
+      {
+        quote:
+          "Christina has a rare gift for asking the one question that changes everything. Our sessions quietly rebuilt a confidence I thought I'd lost.",
+        name: 'Sophie R.',
+        tag: 'Renewed calm',
+      },
+      {
+        quote:
+          "I stopped waiting for the 'right time.' The shifts were small each week, but together they changed the whole direction of my life.",
+        name: 'Marie K.',
+        tag: 'Fresh start',
+      },
+    ],
+  },
+  about: {
+    eyebrow: 'About',
+    titleLine1: "Hi, I'm Christina —",
+    titleAccent: "and I've been where you are.",
+    badge: 'Certified Future Vision Coach',
+    paragraphs: [
+      'A few years ago I was successful on paper and quietly stuck underneath it. The work I now do with clients is the work I had to do for myself — getting honest, choosing differently, and building a life that actually fits.',
+      'As a Certified Future Vision Coach, I blend practical tools with a deep respect for your pace. No pressure, no performance — just real, lasting change, one session at a time.',
+    ],
+    stats: [
+      { value: '6+ yrs', label: 'guiding transformations' },
+      { value: '200+', label: 'sessions held' },
+      { value: 'EN · DE', label: 'fluent coaching' },
+    ],
+  },
+  finalCta: {
+    eyebrow: 'Your next chapter',
+    title: 'Ready to start?',
+    body: 'Book your first 1:1 session over Zoom. One honest conversation is often all it takes to change direction.',
+    cta: 'Book a 1:1 session',
+    newsletterNote: 'Not ready yet? Get the occasional note from Christina.',
+    placeholder: 'Enter your email',
+    subscribe: 'Subscribe',
+    success: 'Thank you — check your inbox to confirm.',
+  },
+  footer: {
+    tagline:
+      'Transformation coaching, the ALLUMI app & The Show. Based in Germany — working worldwide.',
+    follow: 'Follow',
+    explore: 'Explore',
+    exploreLinks: ['1:1 Coaching', 'ALLUMI App', 'The Show', 'About'],
+    listen: 'Listen & Get the App',
+    listenLinks: ['Spotify', 'Apple Podcasts', 'YouTube', 'allumi.me'],
+    legal: 'Legal',
+    copyright: '© 2026 Christina Pfeiffer. All rights reserved.',
+  },
+  faq: {
+    eyebrow: 'Support',
+    titleLine1: 'Questions,',
+    titleAccent: 'answered.',
+    subtitle:
+      'Everything worth knowing about how the 1:1 sessions work, booking, and rescheduling. Still unsure? Reach out anytime.',
+    items: [
+      {
+        q: 'How do the 1:1 sessions work?',
+        a: "Each session is a private 60-minute conversation over Zoom. We start wherever you are, work through what matters most, and finish with a clear, doable next step — no scripts, no pressure, just focused time that's entirely yours.",
+      },
+      {
+        q: 'Where do the sessions take place?',
+        a: 'All sessions happen online over Zoom, so you can join from wherever you feel most comfortable. You will receive your link by email once your session is confirmed.',
+      },
+      {
+        q: 'How do I book?',
+        a: 'Choose a session or package, pick a preferred date and time, and send your request. Christina personally confirms your spot and the next steps by email.',
+      },
+      {
+        q: 'When and how do I pay?',
+        a: 'There is nothing to pay upfront. Once Christina confirms your session by email, she will share simple payment details — so you only pay once your time is set.',
+      },
+      {
+        q: 'Can I reschedule or cancel?',
+        a: 'Of course — life happens. You can reschedule up to 24 hours before your session at no cost. Just reply to your confirmation email.',
+      },
+      {
+        q: 'Do you offer packages?',
+        a: 'Yes. Alongside single sessions there are 3- and 6-session journeys for deeper, sustained work — with continuity and momentum between calls.',
+      },
+      {
+        q: 'In which languages do you coach?',
+        a: 'Sessions are available in both English and German. Choose whichever feels most natural to you, or mix between the two.',
+      },
+    ],
+    ctaTitle: 'Still have a question?',
+    ctaBody: "I'm happy to help — send a note and I'll get back to you personally.",
+    ctaButton: 'Get in touch',
+  },
+  legal: {
+    eyebrow: 'Legal',
+    title: 'Legal',
+    updated: 'Last updated: 1 June 2026',
+    tabs: {
+      impressum: 'Impressum',
+      datenschutz: 'Datenschutz',
+      agb: 'AGB',
+      widerruf: 'Widerruf',
+    },
+  },
+  booking: {
+    backHome: 'Back to home',
+    eyebrow: 'Book a 1:1 session',
+    titleLine1: 'Request your',
+    titleAccent: 'session.',
+    subtitle:
+      "Choose the session that fits, tell me a little about you, and send your request. I'll personally reply by email to arrange a time that works for both of us.",
+    step1: 'Choose your package',
+    step2: 'Your details',
+    whatsIncluded: "What's included",
+    inclVat: 'incl. VAT · per session',
+    minutes: 'min',
+    sessionsWord: 'sessions',
+    sessionWord: 'session',
+    form: {
+      firstName: 'First name',
+      lastName: 'Last name',
+      email: 'Email',
+      phone: 'Phone',
+      optional: 'optional',
+      focus: 'What would you like to focus on?',
+      firstNamePlaceholder: 'Anna',
+      lastNamePlaceholder: 'Becker',
+      emailPlaceholder: 'you@example.com',
+      phonePlaceholder: '+49 …',
+      focusPlaceholder: 'A sentence or two helps Christina prepare for your session…',
+      submit: 'Send request',
+      submitting: 'Sending…',
+    },
+    errors: {
+      firstNameRequired: 'Please enter your first name',
+      lastNameRequired: 'Please enter your last name',
+      emailRequired: 'Please enter your email',
+      emailInvalid: 'Please enter a valid email',
+    },
+    summary: {
+      label: 'Your request',
+      durationLine: '60 minutes · 1:1 coaching over Zoom',
+      vatLabel: 'VAT (19%)',
+      vatIncl: 'incl.',
+      total: 'Total',
+      send: 'Send request',
+      note: 'No payment now — Christina emails you to arrange a time and confirm everything.',
+    },
+    toastSuccess: 'Request sent — Christina will be in touch soon.',
+    confirmation: {
+      eyebrow: 'Request received',
+      titleLine1: "You're",
+      titleAccent: 'all set.',
+      body: "Your request is in. Christina will personally reply by email to arrange a time and share everything you need — including your Zoom link.",
+      whatNext: 'What happens next',
+      steps: [
+        {
+          title: 'Christina replies',
+          body: 'She personally reviews your request and emails you to arrange a time that works.',
+        },
+        {
+          title: 'Your time is set',
+          body: "Once you agree on a slot, you'll get a confirmation with your Zoom link and a short prep note.",
+        },
+        {
+          title: 'We meet on Zoom',
+          body: 'Join with one tap at the scheduled time. That’s it — see you there.',
+        },
+      ],
+      backHome: 'Back to home',
+    },
+  },
+  common: {
+    bookNow: 'Book a session',
+  },
+}
+
+export type Dictionary = typeof en
