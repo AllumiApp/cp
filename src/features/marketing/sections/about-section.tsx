@@ -20,7 +20,7 @@ function MedalIcon() {
 }
 
 export function AboutSection() {
-  const { d } = useLang()
+  const { d, images } = useLang()
   const a = d.about
 
   return (
@@ -32,7 +32,11 @@ export function AboutSection() {
             className="relative flex aspect-square w-full max-w-[420px] shrink-0 items-end justify-center overflow-clip rounded-[26px] lg:w-[527px] lg:max-w-none"
             style={{ background: 'linear-gradient(155deg, #E9DED6 0%, #F2ECE7 100%)' }}
           >
-            <PersonSilhouette />
+            {images.about ? (
+              <img src={images.about} alt="Christina Pfeiffer" className="absolute inset-0 h-full w-full object-cover" />
+            ) : (
+              <PersonSilhouette />
+            )}
             <div className="absolute left-7 top-7 flex items-center gap-2.5 rounded-full bg-cream/90 px-4.5 py-2.5">
               <MedalIcon />
               <span className="text-[13px] font-semibold text-dark">{a.badge}</span>

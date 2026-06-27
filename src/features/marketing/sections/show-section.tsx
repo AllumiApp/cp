@@ -38,7 +38,7 @@ function YoutubeIcon() {
 const PLATFORM_ICONS = [SpotifyIcon, ApplePodcastsIcon, YoutubeIcon]
 
 export function ShowSection() {
-  const { d } = useLang()
+  const { d, images, links } = useLang()
   const s = d.show
 
   return (
@@ -61,7 +61,7 @@ export function ShowSection() {
                 return (
                   <a
                     key={platform}
-                    href="#"
+                    href={links?.show.find((pl) => pl.platform === platform)?.url || '#'}
                     className="flex items-center gap-2.5 rounded-full border border-[#2C181033] px-5 py-3 text-sm font-semibold text-dark transition-colors hover:border-dark/40 sm:text-[15px]"
                   >
                     <Icon />
@@ -72,24 +72,15 @@ export function ShowSection() {
             </div>
           </div>
 
-          {/* Latest episode card */}
-          <div className="w-full shrink-0 rounded-3xl bg-card-warm p-7 shadow-[0_1px_4px_#2C18100F,0_4px_16px_#2C18100D] lg:w-118">
+          {/* Right block — an uploaded image replaces the whole episode card
+              (same width/shape); otherwise the decorative episode-card mock. */}
+          {images.show ? <img src={images.show} alt="The Show" className="h-auto w-full shrink-0 rounded-3xl object-contain lg:w-118" /> : <div className="w-full shrink-0 rounded-3xl bg-card-warm p-7 shadow-[0_1px_4px_#2C18100F,0_4px_16px_#2C18100D] lg:w-118">
             <p className="text-xs font-semibold uppercase tracking-[0.15em] text-dark/50">
               {s.latestLabel}
             </p>
             <div className="flex items-center gap-5 pt-4.5">
-              <div
-                className="flex size-26 shrink-0 items-center justify-center rounded-2xl"
-                style={{ background: 'linear-gradient(150deg, #C9A84E 0%, #C87B82 100%)' }}
-              >
-                <svg width="44" height="44" viewBox="0 0 44 44">
-                  <rect x="8" y="18" width="3.5" height="8" rx="1.75" fill="#FDF2F0" />
-                  <rect x="15" y="12" width="3.5" height="20" rx="1.75" fill="#FDF2F0" />
-                  <rect x="22" y="7" width="3.5" height="30" rx="1.75" fill="#FDF2F0" />
-                  <rect x="29" y="14" width="3.5" height="16" rx="1.75" fill="#FDF2F0" />
-                  <rect x="36" y="19" width="3.5" height="6" rx="1.75" fill="#FDF2F0" />
-                </svg>
-              </div>
+            
+                <div className="size-26 shrink-0 rounded-2xl bg-beige" />
               <div className="flex flex-col gap-2">
                 <p className="font-serif text-[21px] font-bold leading-[27px] text-dark">
                   {s.episodeTitle}
@@ -103,7 +94,7 @@ export function ShowSection() {
               </svg>
               <span className="text-[15px] font-semibold text-cream">{s.play}</span>
             </button>
-          </div>
+          </div>}
         </div>
       </Container>
     </section>

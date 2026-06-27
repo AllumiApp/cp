@@ -1,9 +1,13 @@
+'use client'
+
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { toast } from 'sonner'
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
+import { formatPrice } from '@/lib/format'
 import { cn } from '@/lib/utils'
 import { useBooking, type CustomerDetails } from './booking-context'
 import { PackageSelector } from './components/package-selector'
@@ -25,20 +29,26 @@ function StepBadge({ n, tone }: { n: number; tone: 'gold' | 'dark' }) {
 }
 
 export function BookingPage() {
-  const { d } = useLang()
+  const { d, lang } = useLang()
   const b = d.booking
-  const navigate = useNavigate()
-  const { packageId, customer, setPackage, setCustomer, markSubmitted, buildPayload } = useBooking()
+  const router = useRouter()
+  const { packageId, customer, selectedPackage, setPackage, setCustomer, markSubmitted } = useBooking()
   const [submitting, setSubmitting] = useState(false)
 
   const onSubmit = async (values: CustomerDetails) => {
     setSubmitting(true)
     setCustomer(values)
     try {
-      await submitBookingRequest({ ...buildPayload(), customer: values })
+      await submitBookingRequest({
+        packageSlug: packageId,
+        packageName: selectedPackage.name[lang],
+        packagePrice: formatPrice(selectedPackage.price, lang),
+        customer: values,
+        lang,
+      })
       markSubmitted()
       toast.success(b.toastSuccess)
-      navigate('/coaching/confirmation')
+      router.push('/coaching/confirmation')
     } catch {
       setSubmitting(false)
     }
@@ -50,7 +60,7 @@ export function BookingPage() {
       <div className="border-b border-[#2C18101A]">
         <Container className="py-10 md:py-12 lg:py-16">
           <Link
-            to="/"
+            href="/"
             className="inline-flex items-center gap-2 text-sm font-medium text-gold transition-opacity hover:opacity-80 sm:text-[15px]"
           >
             <ArrowLeft className="size-4" />

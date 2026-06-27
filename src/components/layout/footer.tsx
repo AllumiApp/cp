@@ -1,4 +1,6 @@
-import { Link } from 'react-router'
+'use client'
+
+import Link from 'next/link'
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
 
@@ -23,9 +25,10 @@ function LinkedinIcon() {
 }
 
 export function Footer() {
-  const { d, lang, setLang } = useLang()
+  const { d, lang, setLang, links } = useLang()
 
   const exploreHrefs = ['/#coaching', '/#allumi', '/#show', '/#about']
+  const socialUrl = (platform: string) => links?.social.find((s) => s.platform === platform)?.url || '#'
 
   return (
     <footer className="bg-footer-bg">
@@ -42,10 +45,10 @@ export function Footer() {
             <div className="flex flex-col gap-2.5">
               <p className="text-base font-bold text-footer-text">{d.footer.follow}</p>
               <div className="flex flex-col gap-3">
-                <a href="#" className="flex items-center gap-2.5 text-[15px] text-footer-muted transition-colors hover:text-footer-text">
+                <a href={socialUrl('instagram')} className="flex items-center gap-2.5 text-[15px] text-footer-muted transition-colors hover:text-footer-text">
                   <InstagramIcon /> Instagram
                 </a>
-                <a href="#" className="flex items-center gap-2.5 text-[15px] text-footer-muted transition-colors hover:text-footer-text">
+                <a href={socialUrl('linkedin')} className="flex items-center gap-2.5 text-[15px] text-footer-muted transition-colors hover:text-footer-text">
                   <LinkedinIcon /> LinkedIn
                 </a>
               </div>
@@ -112,7 +115,7 @@ function FooterCol({
             {item.label}
           </a>
         ) : (
-          <Link key={item.label} to={item.to} className="text-[15px] leading-[22px] text-footer-muted transition-colors hover:text-footer-text">
+          <Link key={item.label} href={item.to} className="text-[15px] leading-[22px] text-footer-muted transition-colors hover:text-footer-text">
             {item.label}
           </Link>
         ),

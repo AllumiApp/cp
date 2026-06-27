@@ -32,9 +32,10 @@ function PlayGlyph({ className }: { className?: string }) {
 }
 
 export function AllumiSection() {
-  const { d } = useLang()
+  const { d, images, links } = useLang()
   const a = d.allumi
   const p = a.phone
+  const storeUrl = (platform: string) => links?.store.find((s) => s.platform === platform)?.url || '#'
 
   return (
     <section id="allumi" className="border-t border-[#2C18101A] bg-cream py-12 md:py-20 lg:py-26">
@@ -51,7 +52,7 @@ export function AllumiSection() {
             <p className="max-w-[520px] pt-6 text-base leading-[26px] text-dark/65 sm:text-[17px] sm:leading-7">{a.body}</p>
 
             <div className="flex items-center gap-3 pt-9 sm:gap-4">
-              <a href="#" className="flex items-center gap-2.5 rounded-[14px] bg-dark px-4 py-2.5 sm:gap-3 sm:px-[22px] sm:py-[13px]">
+              <a href={storeUrl('ios')} className="flex items-center gap-2.5 rounded-[14px] bg-dark px-4 py-2.5 sm:gap-3 sm:px-[22px] sm:py-[13px]">
                 <AppleIcon />
                 <span className="flex flex-col">
                   <span className="text-[9px] font-medium tracking-[0.04em] text-cream/70 sm:text-[10px]">
@@ -62,7 +63,7 @@ export function AllumiSection() {
                   </span>
                 </span>
               </a>
-              <a href="#" className="flex items-center gap-2.5 rounded-[14px] bg-dark px-4 py-2.5 sm:gap-3 sm:px-[22px] sm:py-[13px]">
+              <a href={storeUrl('android')} className="flex items-center gap-2.5 rounded-[14px] bg-dark px-4 py-2.5 sm:gap-3 sm:px-[22px] sm:py-[13px]">
                 <GooglePlayIcon />
                 <span className="flex flex-col">
                   <span className="text-[9px] font-medium tracking-[0.04em] text-cream/70 sm:text-[10px]">
@@ -80,43 +81,51 @@ export function AllumiSection() {
             </a>
           </div>
 
-          {/* Phone */}
-          <div className="h-[560px] w-[280px] shrink-0 rounded-[46px] bg-dark p-3 shadow-2xl sm:h-[680px] sm:w-[340px]">
-            <div className="flex h-full w-full flex-col overflow-clip rounded-[34px] bg-cream px-6 py-7.5">
-              <p className="font-serif text-lg font-bold leading-[22px] tracking-[0.18em] text-dark">
-                ALLUMI
-              </p>
-              <p className="pt-1.5 text-[13px] leading-5 text-dark/55">{p.greeting}</p>
+          {/* Phone — uploaded image, else the bundled mock as fallback */}
+          {images.allumi ? (
+            <img
+              src={images.allumi}
+              alt="ALLUMI app"
+              className="h-[560px] w-[280px] shrink-0 rounded-[46px] object-cover shadow-2xl sm:h-[680px] sm:w-[340px]"
+            />
+          ) : (
+            <div className="h-[560px] w-[280px] shrink-0 rounded-[46px] bg-dark p-3 shadow-2xl sm:h-[680px] sm:w-[340px]">
+              <div className="flex h-full w-full flex-col overflow-clip rounded-[34px] bg-cream px-6 py-7.5">
+                <p className="font-serif text-lg font-bold leading-[22px] tracking-[0.18em] text-dark">
+                  ALLUMI
+                </p>
+                <p className="pt-1.5 text-[13px] leading-5 text-dark/55">{p.greeting}</p>
 
-              {/* Journey card */}
-              <div
-                className="relative top-6 flex flex-col gap-1.5 rounded-[22px] p-[22px]"
-                style={{ background: 'linear-gradient(150deg, #F5DAC8 0%, #C87B82 100%)' }}
-              >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-dark/55">
-                  {p.todayLabel}
-                </p>
-                <p className="pt-1.5 font-serif text-[22px] font-bold leading-[27px] text-dark">
-                  {p.journeyTitle}
-                </p>
-                <p className="font-serif text-[15px] italic leading-[18px] text-dark/80">
-                  {p.journeySub}
-                </p>
-                <p className="pt-2.5 text-xs font-medium text-dark/60">{p.journeyMeta}</p>
-              </div>
+                {/* Journey card */}
+                <div
+                  className="relative top-6 flex flex-col gap-1.5 rounded-[22px] p-[22px]"
+                  style={{ background: 'linear-gradient(150deg, #F5DAC8 0%, #C87B82 100%)' }}
+                >
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-dark/55">
+                    {p.todayLabel}
+                  </p>
+                  <p className="pt-1.5 font-serif text-[22px] font-bold leading-[27px] text-dark">
+                    {p.journeyTitle}
+                  </p>
+                  <p className="font-serif text-[15px] italic leading-[18px] text-dark/80">
+                    {p.journeySub}
+                  </p>
+                  <p className="pt-2.5 text-xs font-medium text-dark/60">{p.journeyMeta}</p>
+                </div>
 
-              {/* Play card */}
-              <div className="relative top-12 flex items-center gap-3.5 rounded-[18px] bg-white p-3.5">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-gold">
-                  <PlayGlyph className="text-white" />
-                </span>
-                <span className="flex flex-col gap-0.5">
-                  <span className="text-[13px] font-semibold text-dark">{p.cardTitle}</span>
-                  <span className="text-[11px] text-dark/50">{p.cardSub}</span>
-                </span>
+                {/* Play card */}
+                <div className="relative top-12 flex items-center gap-3.5 rounded-[18px] bg-white p-3.5">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-gold">
+                    <PlayGlyph className="text-white" />
+                  </span>
+                  <span className="flex flex-col gap-0.5">
+                    <span className="text-[13px] font-semibold text-dark">{p.cardTitle}</span>
+                    <span className="text-[11px] text-dark/50">{p.cardSub}</span>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </Container>
     </section>

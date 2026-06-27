@@ -1,18 +1,14 @@
-import { useParams, Navigate, Link } from 'react-router'
+'use client'
+
+import Link from 'next/link'
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
 import { FloatingGradient } from '@/components/shared/floating-gradient'
 import { cn } from '@/lib/utils'
-import { LEGAL_SLUGS, getLegalSections, isLegalSlug } from './legal-content'
+import { LEGAL_SLUGS, getLegalSections, type LegalSlug } from './legal-content'
 
-export function LegalPage() {
-  const { slug } = useParams()
+export function LegalPage({ slug }: { slug: LegalSlug }) {
   const { d } = useLang()
-
-  if (!isLegalSlug(slug)) {
-    return <Navigate to={`/legal/${LEGAL_SLUGS[0]}`} replace />
-  }
-
   const sections = getLegalSections(slug)
 
   return (
@@ -41,7 +37,7 @@ export function LegalPage() {
           {LEGAL_SLUGS.map((s) => (
             <Link
               key={s}
-              to={`/legal/${s}`}
+              href={`/legal/${s}`}
               className={cn(
                 'shrink-0 border-b-2 pb-3.5 pt-4 text-base transition-colors',
                 s === slug

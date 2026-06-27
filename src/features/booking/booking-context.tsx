@@ -1,5 +1,8 @@
+'use client'
+
 import { createContext, useContext, useMemo, useState, useCallback, type ReactNode } from 'react'
-import { getPackage, type PackageId, type SessionPackage } from './booking-config'
+import { useLang } from '@/i18n/language-context'
+import { PACKAGES, type PackageId, type SessionPackage } from './booking-config'
 
 export interface CustomerDetails {
   firstName: string
@@ -42,7 +45,13 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const [customer, setCustomerState] = useState<CustomerDetails>(emptyCustomer)
   const [submitted, setSubmitted] = useState(false)
 
-  const selectedPackage = useMemo(() => getPackage(packageId), [packageId])
+  // Packages come from the CMS when available, else the bundled config.
+  const { packages } = useLang()
+  const list = packages && packages.length ? packages : PACKAGES
+  const selectedPackage = useMemo(
+    () => list.find((p) => p.id === packageId) ?? list[0],
+    [list, packageId],
+  )
 
   const setPackage = useCallback((id: PackageId) => setPackageId(id), [])
   const setCustomer = useCallback((details: CustomerDetails) => setCustomerState(details), [])
@@ -74,7 +83,6 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useBooking(): BookingContextValue {
   const ctx = useContext(BookingContext)
   if (!ctx) throw new Error('useBooking must be used within a BookingProvider')

@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import Link from 'next/link'
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
 import { btnPrimary } from '@/lib/ui'
@@ -23,10 +23,10 @@ export function ApproachSection() {
           <div className="flex flex-col gap-6 lg:max-w-[420px] lg:pb-1.5">
             <p className="text-base leading-[26px] text-dark/65 sm:text-[17px] sm:leading-7">{a.body}</p>
             <div className="flex items-center gap-5 sm:gap-6">
-              <Link to="/coaching" className={btnPrimary}>
+              <Link href="/coaching" className={btnPrimary}>
                 {a.cta}
               </Link>
-              <Link to="/faq" className="flex items-center gap-2 text-sm font-semibold text-dark/60 sm:text-[15px]">
+              <Link href="/faq" className="flex items-center gap-2 text-sm font-semibold text-dark/60 sm:text-[15px]">
                 {a.questions} <span className="text-gold">{a.faqLink}</span>
               </Link>
             </div>

@@ -1,5 +1,7 @@
+'use client'
+
 import { useState } from 'react'
-import { Link } from 'react-router'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
@@ -34,7 +36,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-cream">
       <Container className="flex h-20 items-center justify-between lg:h-[110px]">
-        <Link to="/" className="font-serif text-[22px] font-bold tracking-[-0.02em] text-dark">
+        <Link href="/" className="font-serif text-[22px] font-bold tracking-[-0.02em] text-dark">
           Christina <span className="text-gold">Pfeiffer</span>
         </Link>
 
@@ -43,14 +45,14 @@ export function Navbar() {
           {links.map((link) => (
             <Link
               key={link.hash}
-              to={`/${link.hash}`}
+              href={`/${link.hash}`}
               className="text-[15px] font-normal leading-[18px] tracking-[-0.01em] text-dark transition-opacity hover:opacity-70"
             >
               {link.label}
             </Link>
           ))}
           <Link
-            to="/coaching"
+            href="/coaching"
             className="flex h-13 items-center justify-center rounded-[28px] bg-gold px-6 text-[15px] font-semibold leading-[18px] text-white transition-opacity hover:opacity-90"
           >
             {d.nav.book}
@@ -72,7 +74,7 @@ export function Navbar() {
             {links.map((link) => (
               <Link
                 key={link.hash}
-                to={`/${link.hash}`}
+                href={`/${link.hash}`}
                 onClick={() => setMobileOpen(false)}
                 className="rounded-xl px-3 py-3 text-[15px] font-normal text-dark"
               >
@@ -82,7 +84,7 @@ export function Navbar() {
             <div className="mt-3 flex items-center justify-between px-3">
               <LangToggle />
               <Link
-                to="/coaching"
+                href="/coaching"
                 onClick={() => setMobileOpen(false)}
                 className="flex h-12 items-center justify-center rounded-[28px] bg-gold px-6 text-[15px] font-semibold text-white"
               >

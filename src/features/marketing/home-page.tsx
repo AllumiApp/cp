@@ -1,3 +1,5 @@
+'use client'
+
 import { HeroSection } from './sections/hero-section'
 import { ApproachSection } from './sections/approach-section'
 import { AllumiSection } from './sections/allumi-section'

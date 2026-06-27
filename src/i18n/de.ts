@@ -226,6 +226,7 @@ export const de: Dictionary = {
     summary: {
       label: 'Deine Anfrage',
       durationLine: '60 Minuten · 1:1 Coaching über Zoom',
+      priceLabel: 'Investition',
       vatLabel: 'MwSt. (19%)',
       vatIncl: 'inkl.',
       total: 'Gesamt',

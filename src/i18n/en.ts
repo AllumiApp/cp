@@ -224,6 +224,7 @@ export const en = {
     summary: {
       label: 'Your request',
       durationLine: '60 minutes · 1:1 coaching over Zoom',
+      priceLabel: 'Investment',
       vatLabel: 'VAT (19%)',
       vatIncl: 'incl.',
       total: 'Total',

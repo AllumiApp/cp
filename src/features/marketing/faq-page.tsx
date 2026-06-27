@@ -1,3 +1,5 @@
+'use client'
+
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
 import { Accordion } from '@/components/ui/accordion'

@@ -1,4 +1,8 @@
-import { Navigate, Link } from 'react-router'
+'use client'
+
+import { useEffect } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Check, Clock, Mail } from 'lucide-react'
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
@@ -8,10 +12,15 @@ export function ConfirmationPage() {
   const { d, lang } = useLang()
   const c = d.booking.confirmation
   const { selectedPackage, customer, submitted } = useBooking()
+  const router = useRouter()
 
   // Deep-link guard: confirmation only after a submitted request.
+  useEffect(() => {
+    if (!submitted) router.replace('/coaching')
+  }, [submitted, router])
+
   if (!submitted) {
-    return <Navigate to="/coaching" replace />
+    return null
   }
 
   return (
@@ -65,7 +74,7 @@ export function ConfirmationPage() {
         </div>
         <div className="flex justify-center pt-12">
           <Link
-            to="/"
+            href="/"
             className="flex items-center justify-center rounded-full border border-[#2C181033] bg-white px-8 py-3.5 text-base font-semibold text-dark transition-colors hover:bg-card-warm"
           >
             {c.backHome}

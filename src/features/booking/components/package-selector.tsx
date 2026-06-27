@@ -11,14 +11,15 @@ export function PackageSelector({
   selected: PackageId
   onSelect: (id: PackageId) => void
 }) {
-  const { lang } = useLang()
-  const pkg = PACKAGES.find((p) => p.id === selected) as SessionPackage
+  const { lang, packages } = useLang()
+  const list = packages && packages.length ? packages : PACKAGES
+  const pkg = (list.find((p) => p.id === selected) ?? list[0]) as SessionPackage
 
   return (
     <div className="flex flex-col gap-6">
       {/* Segmented control — stacks full-width on mobile so long labels never overflow */}
       <div className="flex w-full flex-col gap-1.5 rounded-[20px] bg-card-warm/70 p-1.5 sm:inline-flex sm:w-auto sm:flex-row sm:flex-wrap sm:gap-1 sm:self-start sm:rounded-full">
-        {PACKAGES.map((p) => {
+        {list.map((p) => {
           const active = p.id === selected
           return (
             <button

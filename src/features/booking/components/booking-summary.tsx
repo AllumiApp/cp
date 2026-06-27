@@ -30,21 +30,15 @@ export function BookingSummary({ action }: { action?: SummaryAction }) {
       </div>
 
       <div className="mt-6 border-t border-[#2C18101F] pt-5">
-        <div className="flex items-center justify-between text-[15px]">
-          <span className="text-dark/70">{selectedPackage.name[lang]}</span>
-          <span className="text-dark">{formatPrice(selectedPackage.price, lang)}</span>
+        <div className="flex items-baseline justify-between">
+          <span className="text-[15px] text-dark/70">{s.priceLabel}</span>
+          <span className="font-serif text-[28px] font-bold text-dark">
+            {formatPrice(selectedPackage.price, lang)}
+          </span>
         </div>
-        <div className="flex items-center justify-between pt-1.5 text-[15px]">
-          <span className="text-dark/70">{s.vatLabel}</span>
-          <span className="text-dark/70">{s.vatIncl}</span>
-        </div>
-      </div>
-
-      <div className="mt-5 flex items-baseline justify-between">
-        <span className="font-serif text-xl font-bold text-dark">{s.total}</span>
-        <span className="font-serif text-[28px] font-bold text-dark">
-          {formatPrice(selectedPackage.price, lang)}
-        </span>
+        <p className="pt-1.5 text-[13px] text-dark/50">
+          {s.vatLabel} {s.vatIncl}
+        </p>
       </div>
 
       {action && (

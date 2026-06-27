@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { Link } from 'react-router'
+import Link from 'next/link'
 import { toast } from 'sonner'
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
@@ -31,7 +31,7 @@ export function FinalCtaSection() {
           </h2>
           <p className="max-w-[560px] pt-5 text-base leading-[26px] text-dark/70 sm:text-lg sm:leading-[30px]">{c.body}</p>
 
-          <Link to="/coaching" className={cn(btnPrimary, 'mt-9')}>
+          <Link href="/coaching" className={cn(btnPrimary, 'mt-9')}>
             {c.cta}
           </Link>
 

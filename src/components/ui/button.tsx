@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { forwardRef, type ButtonHTMLAttributes } from 'react'
-import { Link } from 'react-router'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
@@ -46,7 +46,7 @@ export interface ButtonLinkProps extends ButtonBaseProps {
 
 export function ButtonLink({ to, variant, size, className, children }: ButtonLinkProps) {
   return (
-    <Link to={to} className={cn(buttonVariants({ variant, size }), className)}>
+    <Link href={to} className={cn(buttonVariants({ variant, size }), className)}>
       {children}
     </Link>
   )

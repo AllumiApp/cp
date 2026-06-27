@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import Link from 'next/link'
 import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
 import { FloatingGradient } from '@/components/shared/floating-gradient'
@@ -35,10 +35,10 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-8 sm:gap-6 sm:pt-9">
-            <Link to="/coaching" className={btnPrimary}>
+            <Link href="/coaching" className={btnPrimary}>
               {hero.ctaPrimary}
             </Link>
-            <Link to="/#coaching" className="flex items-center gap-2 text-sm font-semibold text-dark sm:gap-2.5 sm:text-base">
+            <Link href="/#coaching" className="flex items-center gap-2 text-sm font-semibold text-dark sm:gap-2.5 sm:text-base">
               {hero.ctaSecondary}
               <span className="text-gold">→</span>
             </Link>
