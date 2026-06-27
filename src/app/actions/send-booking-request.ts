@@ -8,9 +8,8 @@ import { createClient } from '@supabase/supabase-js'
 // the moment .env is set locally and via host env in production.
 //
 //   GMAIL_USER, GMAIL_APP_PASSWORD            → required to send email
-//   NEXT_PUBLIC_CP_SUPABASE_URL / _ANON_KEY   → read editable email templates
-//   SUPABASE_SERVICE_ROLE_KEY                 → OPTIONAL; records the lead in the
-//                                               dashboard inbox (admin-only table)
+//   NEXT_PUBLIC_CP_SUPABASE_URL / _ANON_KEY   → read templates + record the request
+//                                               (via the submit_booking_request RPC)
 
 export interface SendBookingRequestPayload {
   packageSlug: string
@@ -80,30 +79,24 @@ export async function sendBookingRequest(
 
   const supabaseUrl = process.env.NEXT_PUBLIC_CP_SUPABASE_URL
   const anonKey = process.env.NEXT_PUBLIC_CP_SUPABASE_ANON_KEY
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
-  // anon client for public template reads; service-role client for recording.
-  const readDb = supabaseUrl && anonKey ? createClient(supabaseUrl, anonKey) : null
-  const writeDb = supabaseUrl && serviceKey ? createClient(supabaseUrl, serviceKey) : null
+  // anon client — reads public templates and records the lead via an anon-callable
+  // SECURITY DEFINER RPC (no service-role key needed).
+  const db = supabaseUrl && anonKey ? createClient(supabaseUrl, anonKey) : null
 
-  // Record the lead in the dashboard inbox (best-effort; needs the service role key).
-  if (writeDb) {
-    try {
-      await writeDb.from('booking_requests').insert({
-        package_slug: packageSlug ?? null,
-        package_name: packageName ?? null,
-        first_name: customer.firstName ?? null,
-        last_name: customer.lastName ?? null,
-        email: customer.email ?? null,
-        phone: customer.phone ?? null,
-        focus: customer.focus ?? null,
-        lang,
-      })
-    } catch (e) {
-      console.error('[send-booking-request] could not record request:', e)
-    }
-  } else {
-    console.warn('[send-booking-request] SUPABASE_SERVICE_ROLE_KEY not set — request not recorded to the dashboard inbox')
+  // Record the lead in the dashboard inbox (best-effort).
+  if (db) {
+    const { error: recErr } = await db.rpc('submit_booking_request', {
+      p_package_slug: packageSlug ?? null,
+      p_package_name: packageName ?? null,
+      p_first_name: customer.firstName ?? null,
+      p_last_name: customer.lastName ?? null,
+      p_email: customer.email ?? null,
+      p_phone: customer.phone ?? null,
+      p_focus: customer.focus ?? null,
+      p_lang: lang,
+    })
+    if (recErr) console.error('[send-booking-request] could not record request:', recErr.message)
   }
 
   const vars: Record<string, string> = {
@@ -129,8 +122,8 @@ export async function sendBookingRequest(
 
     let notify: EmailTemplateRow | undefined
     let confirm: EmailTemplateRow | undefined
-    if (readDb) {
-      const { data: templates } = await readDb.from('email_templates').select('*')
+    if (db) {
+      const { data: templates } = await db.from('email_templates').select('*')
       notify = templates?.find((t: EmailTemplateRow) => t.kind === 'notify_christina')
       confirm = templates?.find((t: EmailTemplateRow) => t.kind === 'confirm_visitor')
     }

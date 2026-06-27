@@ -220,6 +220,7 @@ export const en = {
       lastNameRequired: 'Please enter your last name',
       emailRequired: 'Please enter your email',
       emailInvalid: 'Please enter a valid email',
+      focusRequired: 'Please share what you’d like to focus on',
     },
     summary: {
       label: 'Your request',

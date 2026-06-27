@@ -33,8 +33,9 @@ export const metadata: Metadata = {
 }
 
 // Mirror allumi-website: fetch CMS content server-side, with ISR so it stays
-// fast and fresh. The bundled i18n dictionary is the guaranteed fallback.
-export const revalidate = 300
+// fast and fresh (dashboard edits/reorders show within ~1 min). The bundled
+// i18n dictionary is the guaranteed fallback.
+export const revalidate = 60
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const initialRows = await fetchCpContent()

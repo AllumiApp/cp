@@ -222,6 +222,7 @@ export const de: Dictionary = {
       lastNameRequired: 'Bitte gib deinen Nachnamen ein',
       emailRequired: 'Bitte gib deine E-Mail ein',
       emailInvalid: 'Bitte gib eine gültige E-Mail ein',
+      focusRequired: 'Bitte teile uns mit, worauf du dich konzentrieren möchtest',
     },
     summary: {
       label: 'Deine Anfrage',

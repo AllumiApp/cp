@@ -28,7 +28,13 @@ export function Footer() {
   const { d, lang, setLang, links } = useLang()
 
   const exploreHrefs = ['/#coaching', '/#allumi', '/#show', '/#about']
-  const socialUrl = (platform: string) => links?.social.find((s) => s.platform === platform)?.url || '#'
+  const socialUrl = (platform: string) => links?.social.find((s) => s.platform === platform)?.url || ''
+  const showUrl = (platform: string) => links?.show.find((s) => s.platform === platform)?.url || ''
+  const realUrl = (u: string) => (u && u !== '#' ? u : '')
+  const socials = [
+    { platform: 'instagram', label: 'Instagram', Icon: InstagramIcon },
+    { platform: 'linkedin', label: 'LinkedIn', Icon: LinkedinIcon },
+  ].filter((s) => realUrl(socialUrl(s.platform)))
 
   return (
     <footer className="bg-footer-bg">
@@ -42,17 +48,24 @@ export function Footer() {
               </p>
               <p className="text-sm leading-[22px] text-footer-faint">{d.footer.tagline}</p>
             </div>
-            <div className="flex flex-col gap-2.5">
-              <p className="text-base font-bold text-footer-text">{d.footer.follow}</p>
-              <div className="flex flex-col gap-3">
-                <a href={socialUrl('instagram')} className="flex items-center gap-2.5 text-[15px] text-footer-muted transition-colors hover:text-footer-text">
-                  <InstagramIcon /> Instagram
-                </a>
-                <a href={socialUrl('linkedin')} className="flex items-center gap-2.5 text-[15px] text-footer-muted transition-colors hover:text-footer-text">
-                  <LinkedinIcon /> LinkedIn
-                </a>
+            {socials.length > 0 && (
+              <div className="flex flex-col gap-2.5">
+                <p className="text-base font-bold text-footer-text">{d.footer.follow}</p>
+                <div className="flex flex-col gap-3">
+                  {socials.map(({ platform, label, Icon }) => (
+                    <a
+                      key={platform}
+                      href={socialUrl(platform)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 text-[15px] text-footer-muted transition-colors hover:text-footer-text"
+                    >
+                      <Icon /> {label}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Link columns */}
@@ -63,7 +76,11 @@ export function Footer() {
             />
             <FooterCol
               heading={d.footer.listen}
-              items={d.footer.listenLinks.map((label) => ({ label, to: '#', external: true }))}
+              items={d.footer.listenLinks.map((label) => ({
+                label,
+                to: label === 'allumi.me' ? 'https://allumi.me' : showUrl(label),
+                external: true,
+              }))}
             />
             <FooterCol
               heading={d.footer.legal}
@@ -106,12 +123,14 @@ function FooterCol({
   heading: string
   items: { label: string; to: string; external?: boolean }[]
 }) {
+  // Hide links that aren't populated yet (empty or "#") so no dead links show.
+  const visible = items.filter((item) => item.to && item.to !== '#')
   return (
     <div className="flex flex-col gap-2.5">
       <p className="text-base font-bold text-footer-text">{heading}</p>
-      {items.map((item) =>
+      {visible.map((item) =>
         item.external ? (
-          <a key={item.label} href={item.to} className="text-[15px] leading-[22px] text-footer-muted transition-colors hover:text-footer-text">
+          <a key={item.label} href={item.to} target="_blank" rel="noopener noreferrer" className="text-[15px] leading-[22px] text-footer-muted transition-colors hover:text-footer-text">
             {item.label}
           </a>
         ) : (

@@ -29,7 +29,7 @@ export function DetailsForm({
         lastName: z.string().trim().min(1, e.lastNameRequired),
         email: z.string().trim().min(1, e.emailRequired).email(e.emailInvalid),
         phone: z.string().trim(),
-        focus: z.string().trim(),
+        focus: z.string().trim().min(1, e.focusRequired),
       }),
     [e],
   )
@@ -69,7 +69,7 @@ export function DetailsForm({
       </div>
 
       <div className="pt-5">
-        <Field label={f.focus} optional={f.optional}>
+        <Field label={f.focus} error={errors.focus?.message}>
           <textarea
             className={cn(inputClass, 'min-h-28 resize-y')}
             placeholder={f.focusPlaceholder}
