@@ -19,7 +19,10 @@ export function FinalCtaSection() {
     setPending(true)
     try {
       const res = await subscribe(email, lang)
-      if (res.ok) {
+      if (res.ok && res.already) {
+        toast.info(c.already)
+        setEmail('')
+      } else if (res.ok) {
         toast.success(c.success)
         setEmail('')
       } else {
