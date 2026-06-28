@@ -5,7 +5,7 @@ import { useLang } from '@/i18n/language-context'
 import { Container } from '@/components/ui/container'
 import { cn } from '@/lib/utils'
 import { btnPrimary } from '@/lib/ui'
-import { subscribe } from '@/app/actions/subscribe'
+import { supabase } from '@/lib/supabase'
 
 export function FinalCtaSection() {
   const { d, lang } = useLang()
@@ -18,15 +18,21 @@ export function FinalCtaSection() {
     if (!email || pending) return
     setPending(true)
     try {
-      const res = await subscribe(email, lang)
-      if (res.ok && res.already) {
+      if (!supabase) {
+        toast.error(c.error)
+        return
+      }
+      const { data, error } = await supabase.functions.invoke('submit-subscriber', {
+        body: { email, lang },
+      })
+      if (error || !data?.ok) {
+        toast.error(c.error)
+      } else if (data.already) {
         toast.info(c.already)
         setEmail('')
-      } else if (res.ok) {
+      } else {
         toast.success(c.success)
         setEmail('')
-      } else {
-        toast.error(c.error)
       }
     } catch {
       toast.error(c.error)
