@@ -235,6 +235,7 @@ export const en = {
       note: 'No payment now — Christina emails you to arrange a time and confirm everything.',
     },
     toastSuccess: 'Request sent — Christina will be in touch soon.',
+    toastError: 'Something went wrong — please try again, or email Christina directly.',
     confirmation: {
       eyebrow: 'Request received',
       titleLine1: "You're",

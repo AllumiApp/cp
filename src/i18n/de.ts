@@ -237,6 +237,7 @@ export const de: Dictionary = {
       note: 'Keine Zahlung jetzt — Christina meldet sich per E-Mail, um einen Termin zu vereinbaren.',
     },
     toastSuccess: 'Anfrage gesendet — Christina meldet sich bald.',
+    toastError: 'Etwas ist schiefgelaufen — bitte versuche es erneut oder schreibe Christina direkt.',
     confirmation: {
       eyebrow: 'Anfrage erhalten',
       titleLine1: 'Alles',

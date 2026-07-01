@@ -49,6 +49,7 @@ export function BookingPage() {
       toast.success(b.toastSuccess)
       router.push('/coaching/confirmation')
     } catch {
+      toast.error(b.toastError)
       setSubmitting(false)
     }
   }
